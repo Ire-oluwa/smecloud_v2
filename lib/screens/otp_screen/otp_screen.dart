@@ -37,6 +37,7 @@ class OTPScreen extends StatelessWidget {
                       keyboardType: kNumberInputType,
                       formatter: kFormatPhoneNumber,
                       inputAction: TextInputAction.next,
+                      maxLength: 6,
                       hint: "Enter OTP",
                     ),
                     SizedBox(height: 21.h),

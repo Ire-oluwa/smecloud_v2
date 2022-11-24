@@ -64,6 +64,7 @@ flutter:
     - assets/
     - assets/svg_pictures/
     - assets/svg_texts/
+    - assets/dashboard_svg_images/
 
 
 

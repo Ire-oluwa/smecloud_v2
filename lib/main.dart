@@ -7,7 +7,10 @@ import 'package:sme_cloud_version2/providers/sign_in_provider/sign_in_provider.d
 import 'package:sme_cloud_version2/providers/sign_up_providers/sign_up_provider.dart';
 import 'package:sme_cloud_version2/screens/change_password/change_password.dart';
 import 'package:sme_cloud_version2/screens/change_password/change_password_message.dart';
+import 'package:sme_cloud_version2/screens/dashboard/dashboard.dart';
 import 'package:sme_cloud_version2/screens/forgot_password/forgot_password.dart';
+import 'package:sme_cloud_version2/screens/history/history.dart';
+import 'package:sme_cloud_version2/screens/home/home.dart';
 import 'package:sme_cloud_version2/screens/otp_screen/otp_screen.dart';
 import 'package:sme_cloud_version2/screens/sign_in/sign_in.dart';
 import 'package:sme_cloud_version2/screens/sign_up/sign_up.dart';
@@ -52,6 +55,9 @@ class MyApp extends StatelessWidget {
             ChangePassword.id: (context) => const ChangePassword(),
             ChangePasswordMessage.id: (context) =>
                 const ChangePasswordMessage(),
+            Dashboard.id: (context) => const Dashboard(),
+            Home.id: (context) => const Home(),
+            History.id: (context) => const History(),
           },
         );
       },

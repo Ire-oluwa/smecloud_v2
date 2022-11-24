@@ -70,7 +70,9 @@ class _FinalSplashState extends State<FinalSplash> {
                       height: 445.h,
                       child: Column(
                         children: [
-                          buildImage(image: image, index: index),
+                          buildImage(
+                            image: image,
+                          ),
                         ],
                       ),
                     );
@@ -122,7 +124,9 @@ class _FinalSplashState extends State<FinalSplash> {
   }
 }
 
-Widget buildImage({image, index}) {
+Widget buildImage({
+  image,
+}) {
   return CustomContainer(
     height: 320.h,
     width: 304.w,

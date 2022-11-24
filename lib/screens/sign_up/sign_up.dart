@@ -4,6 +4,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
 import 'package:sme_cloud_version2/constants/app_constants.dart';
 import 'package:sme_cloud_version2/providers/sign_up_providers/sign_up_provider.dart';
+import 'package:sme_cloud_version2/screens/dashboard/dashboard.dart';
 import 'package:sme_cloud_version2/screens/sign_in/sign_in.dart';
 import 'package:sme_cloud_version2/widgets/custom_checkbox/custom_checkbox.dart';
 import 'package:sme_cloud_version2/widgets/custom_elevated_button/custom_elevated_button.dart';
@@ -125,7 +126,9 @@ class _SignUpState extends State<SignUp> {
                       height: 40.h,
                       width: 346.w,
                       child: CustomElevatedButton(
-                        onClick: () {},
+                        onClick: () {
+                          Navigator.of(context).pushNamed(Dashboard.id);
+                        },
                         circularBorderRadius: 15.r,
                         backgroundColour: kSubmissionButtonColour,
                         child: CustomText(

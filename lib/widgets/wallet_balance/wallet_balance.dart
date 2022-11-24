@@ -1,0 +1,64 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:sme_cloud_version2/constants/app_constants.dart';
+import 'package:sme_cloud_version2/widgets/custom_container/custom_container.dart';
+import 'package:sme_cloud_version2/widgets/custom_text/custom_text.dart';
+
+class WalletBalance extends StatelessWidget {
+  const WalletBalance({
+    Key? key,
+    required this.isBalanceObscured,
+    required this.onIconToggled,
+  }) : super(key: key);
+  final bool isBalanceObscured;
+  final void Function() onIconToggled;
+
+  @override
+  Widget build(BuildContext context) {
+    return CustomContainer(
+      width: 366.w,
+      height: 100.h,
+      colour: kPurpleTheme,
+      margin: EdgeInsets.symmetric(horizontal: 5.w),
+      borderRadius: BorderRadius.circular(8.r),
+      padding: EdgeInsets.symmetric(vertical: 26.h, horizontal: 14.w),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Image.asset("assets/dashboard_svg_images/wallet.png"),
+          SizedBox(width: 7.w),
+          Center(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                CustomText(size: 12.sp, colour: kWhite, text: "Wallet Balance"),
+                CustomText(
+                  size: 16.sp,
+                  colour: kWhite,
+                  text: isBalanceObscured ? "*** *** *** **" : "N 100,000",
+                  weight: kSemiBold,
+                ),
+                CustomText(
+                    size: 12.sp,
+                    colour: kWhite,
+                    text: "Acct number   2345678765"),
+              ],
+            ),
+          ),
+          SizedBox(width: 50.w),
+          IconButton(
+            onPressed: onIconToggled,
+            icon: FaIcon(
+              isBalanceObscured
+                  ? FontAwesomeIcons.solidEyeSlash
+                  : FontAwesomeIcons.solidEye,
+              size: 16.sp,
+              color: kWhite,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}

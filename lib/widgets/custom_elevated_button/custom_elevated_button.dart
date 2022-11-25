@@ -7,21 +7,25 @@ class CustomElevatedButton extends StatelessWidget {
     required this.circularBorderRadius,
     required this.child,
     required this.backgroundColour,
+    this.elevation,
   }) : super(key: key);
   final void Function() onClick;
   final double circularBorderRadius;
   final Widget child;
   final Color backgroundColour;
+  final double? elevation;
 
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(
       onPressed: onClick,
       style: ElevatedButton.styleFrom(
-          backgroundColor: backgroundColour,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(circularBorderRadius),
-          )),
+        elevation: elevation,
+        backgroundColor: backgroundColour,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(circularBorderRadius),
+        ),
+      ),
       child: child,
     );
   }

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sme_cloud_version2/constants/app_constants.dart';
 import 'package:sme_cloud_version2/providers/sign_up_providers/sign_up_provider.dart';
 import 'package:sme_cloud_version2/screens/dashboard/dashboard.dart';
@@ -126,7 +127,9 @@ class _SignUpState extends State<SignUp> {
                       height: 40.h,
                       width: 346.w,
                       child: CustomElevatedButton(
-                        onClick: () {
+                        onClick: () async {
+                          await storeUsername();
+                          if (!mounted) return;
                           Navigator.of(context).pushNamed(Dashboard.id);
                         },
                         circularBorderRadius: 15.r,
@@ -148,6 +151,15 @@ class _SignUpState extends State<SignUp> {
           ),
         ),
       ),
+    );
+  }
+
+  storeUsername() async {
+    SharedPreferences preferences = await SharedPreferences.getInstance();
+    if (!mounted) return;
+    preferences.setString(
+      "username",
+      context.read<SignUpProvider>().username.text,
     );
   }
 }

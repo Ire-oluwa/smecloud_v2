@@ -3,7 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sme_cloud_version2/constants/app_constants.dart';
+import 'package:sme_cloud_version2/screens/history/history.dart';
 import 'package:sme_cloud_version2/widgets/custom_container/custom_container.dart';
 import 'package:sme_cloud_version2/widgets/custom_text/custom_text.dart';
 import 'package:sme_cloud_version2/widgets/portal_balance/portal_balance.dart';
@@ -24,6 +26,7 @@ class _HomeState extends State<Home> {
   late bool isWalletBalanceHidden = true;
   late bool isTransactionBalanceHidden = true;
   late bool isPortalBalanceHidden = true;
+  late String _name = "";
 
   void onWalletBalanceToggled() {
     setState(() {
@@ -76,17 +79,46 @@ class _HomeState extends State<Home> {
                         radius: 22.5.r,
                       ),
                       SizedBox(width: 10.w),
-                      SizedBox(
-                        height: 42.03.h,
-                      ),
-                      SizedBox(width: 210.w),
+                      //TODO: username
+                      FutureBuilder<String>(
+                          future: getUsername(),
+                          builder: (context, AsyncSnapshot<String> snapshot) {
+                            if (snapshot.hasData) {
+                              return SizedBox(
+                                width: 100.w,
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    CustomText(
+                                      size: 16.26.sp,
+                                      colour: kDeeperBlack,
+                                      text: snapshot.data ?? "",
+                                      weight: kBold,
+                                    ),
+                                    CustomText(
+                                      size: 13.55.sp,
+                                      colour: kBlack,
+                                      text: getMoment(),
+                                      weight: kNormal,
+                                    ),
+                                  ],
+                                ),
+                              );
+                            }
+                            return CustomText(
+                              size: 16.26.sp,
+                              colour: kDeeperBlack,
+                              text: "Mr. John Doe",
+                              weight: kBold,
+                            );
+                          }),
+                      SizedBox(width: 120.w),
                       IconButton(
                           onPressed: () {},
                           icon: FaIcon(FontAwesomeIcons.bell, size: 16.sp)),
                     ],
                   ),
                   SizedBox(height: 15.97.h),
-                  /////////////////////////////////////
                   Column(
                     children: [
                       CarouselSlider.builder(
@@ -149,7 +181,9 @@ class _HomeState extends State<Home> {
                         weight: kSemiBold,
                       ),
                       TextButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          Navigator.pushNamed(context, History.id);
+                        },
                         child: CustomText(
                           size: 12.sp,
                           colour: kPurpleTheme,
@@ -222,6 +256,24 @@ class _HomeState extends State<Home> {
         ),
       ),
     );
+  }
+
+  Future<String> getUsername() async {
+    final prefs = await SharedPreferences.getInstance();
+    _name = prefs.getString("username") ?? "";
+    return _name;
+  }
+
+  getMoment() {
+    if (DateTime.now().hour < 12) {
+      return "Good Morning";
+    } else if (DateTime.now().hour == 12) {
+      return "What's good?";
+    } else if (DateTime.now().hour > 12 && DateTime.now().hour < 16) {
+      return "Good Afternoon";
+    } else if (DateTime.now().hour > 16) {
+      return "Good Evening";
+    }
   }
 
   Widget _buildQuickOptions({

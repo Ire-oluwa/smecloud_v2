@@ -5,7 +5,10 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sme_cloud_version2/constants/app_constants.dart';
+import 'package:sme_cloud_version2/screens/add_funds/add_funds.dart';
 import 'package:sme_cloud_version2/screens/history/history.dart';
+import 'package:sme_cloud_version2/screens/reset_api/reset_api.dart';
+import 'package:sme_cloud_version2/screens/vend_data/vend_data.dart';
 import 'package:sme_cloud_version2/widgets/custom_container/custom_container.dart';
 import 'package:sme_cloud_version2/widgets/custom_text/custom_text.dart';
 import 'package:sme_cloud_version2/widgets/portal_balance/portal_balance.dart';
@@ -152,21 +155,27 @@ class _HomeState extends State<Home> {
                         text: "Add Funds",
                         backgroundColour: const Color(0xFFC6C2F9),
                         imagePath: "assets/dashboard_svg_images/add_funds.svg",
-                        onTap: () {},
+                        onTap: () {
+                          Navigator.of(context).pushNamed(AddFunds.id);
+                        },
                       ),
                       SizedBox(width: 12.w),
                       _buildQuickOptions(
                         text: "Vend Data",
                         backgroundColour: const Color(0xFFFFC3C3),
                         imagePath: "assets/dashboard_svg_images/vend_data.svg",
-                        onTap: () {},
+                        onTap: () {
+                          Navigator.of(context).pushNamed(VendData.id);
+                        },
                       ),
                       SizedBox(width: 12.w),
                       _buildQuickOptions(
                         text: "Reset API Key",
                         backgroundColour: const Color(0xFFC7C6D8),
                         imagePath: "assets/dashboard_svg_images/api_key.svg",
-                        onTap: () {},
+                        onTap: () {
+                          Navigator.of(context).pushNamed(ResetApiKey.id);
+                        },
                       ),
                     ],
                   ),

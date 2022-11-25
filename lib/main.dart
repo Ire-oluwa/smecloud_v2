@@ -5,6 +5,7 @@ import 'package:sme_cloud_version2/providers/change_password_provider/change_pas
 import 'package:sme_cloud_version2/providers/forgot_password_provider/forgot_password_provider.dart';
 import 'package:sme_cloud_version2/providers/sign_in_provider/sign_in_provider.dart';
 import 'package:sme_cloud_version2/providers/sign_up_providers/sign_up_provider.dart';
+import 'package:sme_cloud_version2/screens/add_funds/add_funds.dart';
 import 'package:sme_cloud_version2/screens/change_password/change_password.dart';
 import 'package:sme_cloud_version2/screens/change_password/change_password_message.dart';
 import 'package:sme_cloud_version2/screens/dashboard/dashboard.dart';
@@ -12,10 +13,12 @@ import 'package:sme_cloud_version2/screens/forgot_password/forgot_password.dart'
 import 'package:sme_cloud_version2/screens/history/history.dart';
 import 'package:sme_cloud_version2/screens/home/home.dart';
 import 'package:sme_cloud_version2/screens/otp_screen/otp_screen.dart';
+import 'package:sme_cloud_version2/screens/reset_api/reset_api.dart';
 import 'package:sme_cloud_version2/screens/sign_in/sign_in.dart';
 import 'package:sme_cloud_version2/screens/sign_up/sign_up.dart';
 import 'package:sme_cloud_version2/screens/splash/final_splash.dart';
 import 'package:sme_cloud_version2/screens/splash/initial_splash.dart';
+import 'package:sme_cloud_version2/screens/vend_data/vend_data.dart';
 
 void main() {
   runApp(
@@ -58,6 +61,9 @@ class MyApp extends StatelessWidget {
             Dashboard.id: (context) => const Dashboard(),
             Home.id: (context) => const Home(),
             History.id: (context) => const History(),
+            AddFunds.id: (context) => const AddFunds(),
+            ResetApiKey.id: (context) => const ResetApiKey(),
+            VendData.id: (context) => const VendData(),
           },
         );
       },

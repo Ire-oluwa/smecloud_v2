@@ -24,7 +24,7 @@ class NavBarItem {
           FontAwesomeIcons.gear,
           size: 16.sp,
         ),
-        "Settings",
+        "Statistics",
       ),
       NavBarItem(
         SvgPicture.asset("assets/dashboard_svg_images/more_icon.svg"),

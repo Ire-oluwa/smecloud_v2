@@ -3,7 +3,7 @@ import 'package:sme_cloud_version2/constants/app_constants.dart';
 import 'package:sme_cloud_version2/screens/history/history.dart';
 import 'package:sme_cloud_version2/screens/home/home.dart';
 import 'package:sme_cloud_version2/screens/more/more.dart';
-import 'package:sme_cloud_version2/screens/settings/settings.dart';
+import 'package:sme_cloud_version2/screens/statistics/statistics.dart';
 import 'package:sme_cloud_version2/screens/utilities/NavBarItems/NavBarItems.dart';
 
 class Dashboard extends StatefulWidget {
@@ -18,7 +18,7 @@ class _DashboardState extends State<Dashboard> {
   final _screens = [
     const Home(),
     const History(),
-    const Settings(),
+    const Statistics(),
     const More(),
   ];
 
@@ -44,7 +44,7 @@ class _DashboardState extends State<Dashboard> {
       onTap: onItemTapped,
       items: bottomNavBarItems(),
       type: BottomNavigationBarType.fixed,
-      selectedLabelStyle: TextStyle(),
+      selectedItemColor: kPurpleTheme,
       currentIndex: _currentIndex,
     );
   }

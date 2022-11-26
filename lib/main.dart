@@ -18,6 +18,7 @@ import 'package:sme_cloud_version2/screens/sign_in/sign_in.dart';
 import 'package:sme_cloud_version2/screens/sign_up/sign_up.dart';
 import 'package:sme_cloud_version2/screens/splash/final_splash.dart';
 import 'package:sme_cloud_version2/screens/splash/initial_splash.dart';
+import 'package:sme_cloud_version2/screens/statistics/statistics.dart';
 import 'package:sme_cloud_version2/screens/vend_data/vend_data.dart';
 
 void main() {
@@ -63,6 +64,7 @@ class MyApp extends StatelessWidget {
             History.id: (context) => const History(),
             AddFunds.id: (context) => const AddFunds(),
             ResetApiKey.id: (context) => const ResetApiKey(),
+            Statistics.id: (context) => const Statistics(),
             VendData.id: (context) => const VendData(),
           },
         );

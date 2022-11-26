@@ -185,6 +185,7 @@ class _HistoryState extends State<History> {
             ),
             trailing: Column(
               crossAxisAlignment: CrossAxisAlignment.end,
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 CustomText(
                   size: 12.sp,

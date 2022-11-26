@@ -11,6 +11,7 @@ const kInActiveBlack = Color(0xFF5B5B66);
 const kDeeperBlack = Color(0xFF000000);
 const kPurpleText = Color(0xFF7010B8);
 const kVeryLightPurple = Color(0xFFE3CFF3);
+const kNormalGreen = Color(0xFF23B371);
 const kNormal = FontWeight.w400;
 const kMedium = FontWeight.w500;
 const kSemiBold = FontWeight.w600;

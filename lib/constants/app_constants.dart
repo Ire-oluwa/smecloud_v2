@@ -17,9 +17,11 @@ const kMedium = FontWeight.w500;
 const kSemiBold = FontWeight.w600;
 const kBold = FontWeight.w700;
 const kTransparent = Colors.transparent;
-void Function() kUnfocus = () {
+
+VoidCallback kUnfocus = () {
   FocusManager.instance.primaryFocus?.unfocus();
 };
+
 const kInputActionNext = TextInputAction.next;
 const kNameInputType = TextInputType.text;
 const kNumberInputType = TextInputType.phone;

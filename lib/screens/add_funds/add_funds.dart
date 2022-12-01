@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:provider/provider.dart';
 import 'package:sme_cloud_version2/constants/app_constants.dart';
+import 'package:sme_cloud_version2/providers/add_funds_transaction_pin_provider/add_funds_transaction_pin_provider.dart';
 import 'package:sme_cloud_version2/widgets/custom_container/custom_container.dart';
 import 'package:sme_cloud_version2/widgets/custom_elevated_button/custom_elevated_button.dart';
 import 'package:sme_cloud_version2/widgets/custom_text/custom_text.dart';
 import 'package:sme_cloud_version2/widgets/custom_text_field/custom_text_field.dart';
+import 'package:sme_cloud_version2/widgets/otp_input/otp_input.dart';
 
 class AddFunds extends StatefulWidget {
   const AddFunds({Key? key}) : super(key: key);
@@ -21,6 +24,7 @@ class _AddFundsState extends State<AddFunds> {
 
   @override
   Widget build(BuildContext context) {
+    final pinProvider = context.read<AddFundsTransactionPinProvider>();
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
@@ -124,17 +128,103 @@ class _AddFundsState extends State<AddFunds> {
               SizedBox(
                 height: 47.h,
                 width: 339.w,
-                child: CustomElevatedButton(
-                  onClick: () {},
-                  circularBorderRadius: 5.r,
-                  backgroundColour: kPurpleTheme,
-                  child: CustomText(
-                    size: 14.sp,
-                    colour: kWhite,
-                    text: "Confirm",
-                    weight: kBold,
-                  ),
-                ),
+                child: Builder(builder: (context) {
+                  return CustomElevatedButton(
+                    onClick: () {
+                      // _scaffoldKey.currentState;
+                      showBottomSheet(
+                        enableDrag: false,
+                        context: context,
+                        elevation: 7.h,
+                        builder: (context) {
+                          return GestureDetector(
+                            onTap: kUnfocus,
+                            child: SizedBox(
+                              height: 164.h,
+                              width: 390.w,
+                              child: Column(
+                                children: [
+                                  Padding(
+                                    padding: EdgeInsets.only(
+                                      left: 20.w,
+                                      top: 18.h,
+                                    ),
+                                    child: Row(
+                                      children: [
+                                        GestureDetector(
+                                          onTap: () {
+                                            Navigator.of(context).pop();
+                                          },
+                                          child: CircleAvatar(
+                                            backgroundColor: kBlack,
+                                            radius: 9.r,
+                                            child: Icon(
+                                              Icons.close,
+                                              size: 16.sp,
+                                              color: kWhite,
+                                            ),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                  CustomText(
+                                    size: 14.sp,
+                                    colour: kBlack,
+                                    text: "Enter Transaction Pin",
+                                    weight: kSemiBold,
+                                  ),
+                                  SizedBox(height: 19.h),
+                                  Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      OTPInput(
+                                        controller: pinProvider.firstDigit,
+                                      ),
+                                      SizedBox(width: 10.w),
+                                      OTPInput(
+                                        controller: pinProvider.secondDigit,
+                                      ),
+                                      SizedBox(width: 10.w),
+                                      OTPInput(
+                                        controller: pinProvider.thirdDigit,
+                                      ),
+                                      SizedBox(width: 10.w),
+                                      Flexible(
+                                        child: OTPInput(
+                                          controller: pinProvider.fourthDigit,
+                                        ),
+                                      ),
+                                      //
+                                    ],
+                                  ),
+                                  SizedBox(height: 19.h),
+                                  GestureDetector(
+                                    onTap: () {},
+                                    child: CustomText(
+                                      size: 12.sp,
+                                      colour: kPurpleTheme,
+                                      text: "Forgot Transaction Pin?",
+                                      weight: kSemiBold,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          );
+                        },
+                      );
+                    },
+                    circularBorderRadius: 5.r,
+                    backgroundColour: kPurpleTheme,
+                    child: CustomText(
+                      size: 14.sp,
+                      colour: kWhite,
+                      text: "Confirm",
+                      weight: kBold,
+                    ),
+                  );
+                }),
               ),
             ],
           ),
@@ -150,3 +240,10 @@ class _AddFundsState extends State<AddFunds> {
         .toList();
   }
 }
+
+// RoundedRectangleBorder(
+// borderRadius: BorderRadius.only(
+// topLeft: Radius.circular(5.r),
+// topRight: Radius.circular(5.r),
+// ),
+// ),

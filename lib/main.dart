@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
+import 'package:sme_cloud_version2/providers/add_funds_transaction_pin_provider/add_funds_transaction_pin_provider.dart';
 import 'package:sme_cloud_version2/providers/change_password_provider/change_password_provider.dart';
 import 'package:sme_cloud_version2/providers/forgot_password_provider/forgot_password_provider.dart';
 import 'package:sme_cloud_version2/providers/sign_in_provider/sign_in_provider.dart';
@@ -10,8 +11,10 @@ import 'package:sme_cloud_version2/screens/change_password/change_password.dart'
 import 'package:sme_cloud_version2/screens/change_password/change_password_message.dart';
 import 'package:sme_cloud_version2/screens/dashboard/dashboard.dart';
 import 'package:sme_cloud_version2/screens/forgot_password/forgot_password.dart';
+import 'package:sme_cloud_version2/screens/help_and_support/help_and_support.dart';
 import 'package:sme_cloud_version2/screens/history/history.dart';
 import 'package:sme_cloud_version2/screens/home/home.dart';
+import 'package:sme_cloud_version2/screens/more/more.dart';
 import 'package:sme_cloud_version2/screens/otp_screen/otp_screen.dart';
 import 'package:sme_cloud_version2/screens/reset_api/reset_api.dart';
 import 'package:sme_cloud_version2/screens/sign_in/sign_in.dart';
@@ -29,6 +32,7 @@ void main() {
         ChangeNotifierProvider(create: (_) => SignInProvider()),
         ChangeNotifierProvider(create: (_) => ForgotPasswordProvider()),
         ChangeNotifierProvider(create: (_) => ChangePasswordProvider()),
+        ChangeNotifierProvider(create: (_) => AddFundsTransactionPinProvider()),
       ],
       child: const MyApp(),
     ),
@@ -66,6 +70,8 @@ class MyApp extends StatelessWidget {
             ResetApiKey.id: (context) => const ResetApiKey(),
             Statistics.id: (context) => const Statistics(),
             VendData.id: (context) => const VendData(),
+            More.id: (context) => const More(),
+            HelpAndSupport.id: (context) => const HelpAndSupport(),
           },
         );
       },

@@ -128,7 +128,11 @@ class _SignUpState extends State<SignUp> {
                       width: 346.w,
                       child: CustomElevatedButton(
                         onClick: () async {
+                          await storeUserFullName();
+                          await storeUserEmail();
+                          await storeUserPhoneNumber();
                           await storeUsername();
+                          await storeUserPassword();
                           if (!mounted) return;
                           Navigator.of(context).pushNamed(Dashboard.id);
                         },
@@ -154,12 +158,49 @@ class _SignUpState extends State<SignUp> {
     );
   }
 
-  storeUsername() async {
-    SharedPreferences preferences = await SharedPreferences.getInstance();
+  storeUserFullName() async {
+    final fullNamePreference = await SharedPreferences.getInstance();
     if (!mounted) return;
-    preferences.setString(
+    fullNamePreference.setString(
+      "fullName",
+      context.read<SignUpProvider>().fullName.text,
+    );
+  }
+
+  storeUserEmail() async {
+    SharedPreferences emailPreferences = await SharedPreferences.getInstance();
+    if (!mounted) return;
+    emailPreferences.setString(
+      "email",
+      context.read<SignUpProvider>().email.text,
+    );
+  }
+
+  storeUserPhoneNumber() async {
+    final numberPreferences = await SharedPreferences.getInstance();
+    if (!mounted) return;
+    numberPreferences.setString(
+      "phoneNumber",
+      context.read<SignUpProvider>().phoneNumber.text,
+    );
+  }
+
+  storeUsername() async {
+    SharedPreferences userNamePreferences =
+        await SharedPreferences.getInstance();
+    if (!mounted) return;
+    userNamePreferences.setString(
       "username",
       context.read<SignUpProvider>().username.text,
+    );
+  }
+
+  storeUserPassword() async {
+    final passwordPreference = await SharedPreferences.getInstance();
+    if (!mounted) return;
+    passwordPreference.setString(
+      "password",
+      context.read<SignUpProvider>().password.text,
     );
   }
 }

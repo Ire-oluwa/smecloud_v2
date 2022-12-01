@@ -16,6 +16,8 @@ class CustomTextField extends StatelessWidget {
     required this.hint,
     this.label,
     this.suffixIcon,
+    this.onChanged,
+    this.onClick,
   }) : super(key: key);
   final bool? enabled;
   final int? maxLength;
@@ -27,10 +29,14 @@ class CustomTextField extends StatelessWidget {
   final String hint;
   final String? label;
   final Widget? suffixIcon;
+  final void Function(String)? onChanged;
+  final void Function()? onClick;
 
   @override
   Widget build(BuildContext context) {
     return TextField(
+      onTap: onClick,
+      onChanged: onChanged,
       enabled: enabled,
       maxLength: maxLength,
       controller: controller,
@@ -38,6 +44,7 @@ class CustomTextField extends StatelessWidget {
       obscureText: obscureText ?? false,
       inputFormatters: formatter,
       textInputAction: inputAction,
+      cursorColor: kPurpleTheme,
       decoration: InputDecoration(
         suffixIcon: suffixIcon,
         labelText: label,

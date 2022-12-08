@@ -22,13 +22,14 @@ class CustomText extends StatelessWidget {
       text,
       softWrap: true,
       textAlign: align,
+      maxLines: 3,
+      overflow: TextOverflow.ellipsis,
       style: GoogleFonts.getFont(
         "Nunito",
         textStyle: TextStyle(
           color: colour,
           fontSize: size,
           fontWeight: weight,
-          overflow: TextOverflow.ellipsis,
         ),
       ),
     );

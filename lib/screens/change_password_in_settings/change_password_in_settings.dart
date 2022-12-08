@@ -2,21 +2,21 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 import 'package:sme_cloud_version2/constants/app_constants.dart';
-import 'package:sme_cloud_version2/providers/change_pin_provider/change_pin_provider.dart';
+import 'package:sme_cloud_version2/providers/change_password_in_settings_provider/change_password_in_settings_provider.dart';
 import 'package:sme_cloud_version2/widgets/custom_elevated_button/custom_elevated_button.dart';
 import 'package:sme_cloud_version2/widgets/custom_text/custom_text.dart';
 import 'package:sme_cloud_version2/widgets/custom_text_field/custom_text_field.dart';
 
-class ChangePin extends StatefulWidget {
-  const ChangePin({Key? key}) : super(key: key);
+class ChangePasswordSetting extends StatefulWidget {
+  const ChangePasswordSetting({Key? key}) : super(key: key);
+  static const String id = "change password in settings";
 
   @override
-  State<ChangePin> createState() => _ChangePinState();
-  static const String id = "change pin";
+  State<ChangePasswordSetting> createState() => _ChangePasswordSettingState();
 }
 
-class _ChangePinState extends State<ChangePin> {
-  bool _isEdited = false;
+class _ChangePasswordSettingState extends State<ChangePasswordSetting> {
+  bool isEdited = false;
 
   @override
   Widget build(BuildContext context) {
@@ -46,7 +46,7 @@ class _ChangePinState extends State<ChangePin> {
                       CustomText(
                         size: 18.sp,
                         colour: kBlack,
-                        text: "Change Pin",
+                        text: "Change Password",
                         weight: kSemiBold,
                       ),
                     ],
@@ -55,12 +55,14 @@ class _ChangePinState extends State<ChangePin> {
                   CustomText(
                     size: 12.sp,
                     colour: kBlack,
-                    text: "Current Pin",
+                    text: "Current Password",
                     weight: kMedium,
                   ),
                   SizedBox(height: 5.h),
                   CustomTextField(
-                    controller: context.read<ChangePinProvider>().currentPin,
+                    controller: context
+                        .read<ChangePasswordInSettingProvider>()
+                        .currentPassword,
                     keyboardType: kPasswordInputType,
                     formatter: kFormatPassword,
                     inputAction: kInputActionNext,
@@ -70,26 +72,28 @@ class _ChangePinState extends State<ChangePin> {
                   CustomText(
                     size: 12.sp,
                     colour: kBlack,
-                    text: "New Pin",
+                    text: "New Password",
                     weight: kMedium,
                   ),
                   SizedBox(height: 5.h),
                   CustomTextField(
-                    controller: context.read<ChangePinProvider>().newPin,
+                    controller: context
+                        .read<ChangePasswordInSettingProvider>()
+                        .newPassword,
                     keyboardType: kPasswordInputType,
                     formatter: kFormatPassword,
                     inputAction: kInputActionNext,
                     hint: "",
                   ),
                   SizedBox(height: 45.h),
-                  _isEdited
+                  isEdited
                       ? SizedBox(
                           height: 47.h,
                           width: 339.w,
                           child: CustomElevatedButton(
                             onClick: () {
                               setState(() {
-                                _isEdited = !_isEdited;
+                                isEdited = !isEdited;
                               });
                             },
                             backgroundColour: kPurpleTheme,
@@ -108,7 +112,7 @@ class _ChangePinState extends State<ChangePin> {
                           child: CustomElevatedButton(
                             onClick: () {
                               setState(() {
-                                _isEdited = !_isEdited;
+                                isEdited = !isEdited;
                               });
                             },
                             backgroundColour: kPurpleTheme.withOpacity(0.75),

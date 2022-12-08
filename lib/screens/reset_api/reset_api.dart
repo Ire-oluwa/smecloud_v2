@@ -26,117 +26,120 @@ class _ResetApiKeyState extends State<ResetApiKey> {
         child: SingleChildScrollView(
           child: Padding(
             padding: EdgeInsets.symmetric(horizontal: 22.0.w, vertical: 27.h),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                SizedBox(height: 27.h),
-                SizedBox(
-                  height: 66.h,
-                  width: 390.w,
-                  child: Row(
-                    children: [
-                      IconButton(
-                        onPressed: () {
-                          Navigator.pop(context);
-                        },
-                        icon: Icon(Icons.arrow_back_ios,
-                            color: kBlack, size: 20.sp),
-                      ),
-                      SizedBox(width: 40.w),
-                      CustomText(
-                        size: 16.sp,
-                        colour: kBlack,
-                        text: "Reset API Key",
-                        weight: kSemiBold,
-                      ),
-                    ],
+            child: SizedBox(
+              height: MediaQuery.of(context).size.height,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  SizedBox(height: 27.h),
+                  SizedBox(
+                    height: 66.h,
+                    width: 390.w,
+                    child: Row(
+                      children: [
+                        IconButton(
+                          onPressed: () {
+                            Navigator.pop(context);
+                          },
+                          icon: Icon(Icons.arrow_back_ios,
+                              color: kBlack, size: 20.sp),
+                        ),
+                        SizedBox(width: 40.w),
+                        CustomText(
+                          size: 16.sp,
+                          colour: kBlack,
+                          text: "Reset API Key",
+                          weight: kSemiBold,
+                        ),
+                      ],
+                    ),
                   ),
-                ),
-                SizedBox(height: 45.h),
-                CustomText(
-                  size: 12.sp,
-                  colour: kBlack,
-                  text: "Current API key",
-                  weight: kMedium,
-                ),
-                SizedBox(height: 5.h),
-                FutureBuilder(
-                    // future: ,
-                    builder: (context, snapshot) {
-                  if (snapshot.hasData) {
+                  SizedBox(height: 45.h),
+                  CustomText(
+                    size: 12.sp,
+                    colour: kBlack,
+                    text: "Current API key",
+                    weight: kMedium,
+                  ),
+                  SizedBox(height: 5.h),
+                  FutureBuilder(
+                      // future: ,
+                      builder: (context, snapshot) {
+                    if (snapshot.hasData) {
+                      return CustomContainer(
+                        width: 339.w,
+                        height: 44.h,
+                        colour: const Color(0xFFF2F2F2),
+                        child: CustomText(
+                          size: 12.sp,
+                          colour: kBlack,
+                          text: "235793bc2b4829f",
+                        ),
+                      );
+                    }
                     return CustomContainer(
                       width: 339.w,
                       height: 44.h,
                       colour: const Color(0xFFF2F2F2),
+                      padding: EdgeInsets.only(left: 8.w, top: 16.h),
+                      borderRadius: BorderRadius.circular(7.r),
                       child: CustomText(
                         size: 12.sp,
                         colour: kBlack,
-                        text: "235793bc2b4829f",
+                        text: "nothing",
                       ),
                     );
-                  }
-                  return CustomContainer(
-                    width: 339.w,
+                  }),
+                  SizedBox(height: 27.h),
+                  CustomText(
+                    size: 12.sp,
+                    colour: kBlack,
+                    text: "Enter Password",
+                    weight: kMedium,
+                  ),
+                  SizedBox(height: 5.h),
+                  SizedBox(
                     height: 44.h,
-                    colour: const Color(0xFFF2F2F2),
-                    padding: EdgeInsets.only(left: 8.w, top: 16.h),
-                    borderRadius: BorderRadius.circular(7.r),
-                    child: CustomText(
-                      size: 12.sp,
-                      colour: kBlack,
-                      text: "nothing",
+                    width: 339.w,
+                    child: CustomTextField(
+                      controller: _password,
+                      keyboardType: kPasswordInputType,
+                      formatter: kFormatPassword,
+                      inputAction: kInputActionNext,
+                      hint: "",
+                      onClick: () {
+                        setState(() {
+                          isTextFieldClicked = true;
+                        });
+                      },
                     ),
-                  );
-                }),
-                SizedBox(height: 27.h),
-                CustomText(
-                  size: 12.sp,
-                  colour: kBlack,
-                  text: "Enter Password",
-                  weight: kMedium,
-                ),
-                SizedBox(height: 5.h),
-                SizedBox(
-                  height: 44.h,
-                  width: 339.w,
-                  child: CustomTextField(
-                    controller: _password,
-                    keyboardType: kPasswordInputType,
-                    formatter: kFormatPassword,
-                    inputAction: kInputActionNext,
-                    hint: "",
-                    onClick: () {
-                      setState(() {
-                        isTextFieldClicked = true;
-                      });
-                    },
                   ),
-                ),
-                SizedBox(height: 45.h),
-                SizedBox(
-                  height: 44.h,
-                  width: 339.w,
-                  child: CustomElevatedButton(
-                    onClick: () {
-                      displayConfirmation();
+                  SizedBox(height: 45.h),
+                  SizedBox(
+                    height: 44.h,
+                    width: 339.w,
+                    child: CustomElevatedButton(
+                      onClick: () {
+                        displayConfirmation();
 
-                      setState(() {
-                        isTextFieldClicked = false;
-                      });
-                    },
-                    circularBorderRadius: 5.r,
-                    backgroundColour: isTextFieldClicked
-                        ? kPurpleTheme
-                        : const Color(0xBF913BD5),
-                    child: CustomText(
-                      size: 14.sp,
-                      colour: kWhite,
-                      text: "Reset",
-                      weight: kBold,
+                        setState(() {
+                          isTextFieldClicked = false;
+                        });
+                      },
+                      circularBorderRadius: 5.r,
+                      backgroundColour: isTextFieldClicked
+                          ? kPurpleTheme
+                          : const Color(0xBF913BD5),
+                      child: CustomText(
+                        size: 14.sp,
+                        colour: kWhite,
+                        text: "Reset",
+                        weight: kBold,
+                      ),
                     ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
           ),
         ),

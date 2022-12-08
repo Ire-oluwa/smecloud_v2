@@ -4,7 +4,10 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sme_cloud_version2/constants/app_constants.dart';
+import 'package:sme_cloud_version2/screens/change_password_in_settings/change_password_in_settings.dart';
+import 'package:sme_cloud_version2/screens/change_pin/change_pin.dart';
 import 'package:sme_cloud_version2/screens/help_and_support/help_and_support.dart';
+import 'package:sme_cloud_version2/screens/profile_details/profile_details.dart';
 import 'package:sme_cloud_version2/screens/reset_api/reset_api.dart';
 import 'package:sme_cloud_version2/widgets/custom_text/custom_text.dart';
 
@@ -51,7 +54,11 @@ class _MoreState extends State<More> {
               ),
               CircleAvatar(
                 radius: 35.r,
-                backgroundColor: kDimBlack,
+                backgroundColor: kWhite,
+                child: Image.asset(
+                  "assets/dashboard_svg_images/profile_picture.png",
+                  fit: BoxFit.contain,
+                ),
               ),
               SizedBox(height: 13.h),
               futureBuilder(
@@ -71,7 +78,9 @@ class _MoreState extends State<More> {
               buildTile(
                 title: "User Information",
                 subtitle: "Manage your profile",
-                onClick: () {},
+                onClick: () {
+                  Navigator.of(context).pushNamed(ProfileDetails.id);
+                },
               ),
               SizedBox(height: 14.h),
               buildTile(
@@ -84,13 +93,17 @@ class _MoreState extends State<More> {
               buildTile(
                 title: "Change Password",
                 subtitle: "Update your password",
-                onClick: () {},
+                onClick: () {
+                  Navigator.pushNamed(context, ChangePasswordSetting.id);
+                },
               ),
               SizedBox(height: 14.h),
               buildTile(
                 title: "Change Pin",
                 subtitle: "Update your pin",
-                onClick: () {},
+                onClick: () {
+                  Navigator.pushNamed(context, ChangePin.id);
+                },
               ),
               SizedBox(height: 14.h),
               buildTile(

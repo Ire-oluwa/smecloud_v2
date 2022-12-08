@@ -168,8 +168,11 @@ class _HistoryState extends State<History> {
         itemBuilder: (context, index) {
           return ListTile(
             leading: CircleAvatar(
-              backgroundColor: kDimBlack,
+              backgroundColor: kWhite,
               radius: 17.r,
+              child: Image.asset(
+                "assets/dashboard_svg_images/profile_picture.png",
+              ),
             ),
             title: CustomText(
               size: 12.sp,

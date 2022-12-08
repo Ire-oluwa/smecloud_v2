@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:sme_cloud_version2/constants/app_constants.dart';
+import 'package:sme_cloud_version2/screens/help_and_support/faq.dart';
 import 'package:sme_cloud_version2/widgets/custom_container/custom_container.dart';
 import 'package:sme_cloud_version2/widgets/custom_text/custom_text.dart';
 
@@ -38,7 +39,9 @@ class HelpAndSupport extends StatelessWidget {
             children: [
               SizedBox(height: 30.h),
               InkWell(
-                onTap: () {},
+                onTap: () {
+                  Navigator.pushNamed(context, FAQ.id);
+                },
                 child: CustomContainer(
                   width: 360.w,
                   height: 92.h,

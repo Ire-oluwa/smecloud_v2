@@ -78,8 +78,11 @@ class _HomeState extends State<Home> {
                   Row(
                     children: [
                       CircleAvatar(
-                        backgroundColor: Colors.black12,
+                        backgroundColor: Colors.white,
                         radius: 22.5.r,
+                        child: Image.asset(
+                          "assets/dashboard_svg_images/profile_picture.png",
+                        ),
                       ),
                       SizedBox(width: 10.w),
                       //TODO: username
@@ -221,7 +224,10 @@ class _HomeState extends State<Home> {
                             enabled: false,
                             leading: CircleAvatar(
                               radius: 20.r,
-                              backgroundColor: kDimBlack,
+                              backgroundColor: kWhite,
+                              child: Image.asset(
+                                "assets/dashboard_svg_images/profile_picture.png",
+                              ),
                             ),
                             title: CustomText(
                               size: 12.sp,

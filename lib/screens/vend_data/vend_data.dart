@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
@@ -81,7 +82,6 @@ class _VendDataState extends State<VendData> {
                           child: InkWell(
                             onTap: () {
                               displayContacts();
-                              // print(_contacts?.first.phones.elementAt(0).number);
                             },
                             child: SvgPicture.asset(
                               "assets/dashboard_svg_images/vend_data_contact.svg",
@@ -293,15 +293,28 @@ class _VendDataState extends State<VendData> {
 
   displayContacts() {
     showModalBottomSheet(
+      shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.vertical(top: Radius.circular(10.r))),
       context: context,
       builder: (context) {
         return (_contacts?.length == null)
             ? SizedBox(
                 height: 200.h,
                 child: Center(
-                  child: CircularProgressIndicator(
-                    color: kPurpleTheme,
-                    strokeWidth: 2.w,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      CircularProgressIndicator(
+                        color: kPurpleTheme,
+                        strokeWidth: 2.w,
+                      ),
+                      SizedBox(height: 3.h),
+                      CustomText(
+                        size: 13.sp,
+                        colour: kBlack,
+                        text: "Please try again, or manually input the number",
+                      ),
+                    ],
                   ),
                 ),
               )
@@ -310,12 +323,7 @@ class _VendDataState extends State<VendData> {
                 itemBuilder: (context, index) {
                   Uint8List? image = _contacts?[index].photo;
                   return ListTile(
-                    leading: (_contacts![index].photo == null)
-                        ? const Icon(Icons.person)
-                        : CircleAvatar(
-                            backgroundColor: kPurpleTheme,
-                            backgroundImage: MemoryImage(image!),
-                          ),
+                    leading: const Icon(Icons.person),
                     title: CustomText(
                       size: 14.sp,
                       colour: kBlack,
@@ -333,7 +341,6 @@ class _VendDataState extends State<VendData> {
                       weight: kNormal,
                     ),
                     onTap: () {
-                      print(_contacts?.length);
                       setState(() {
                         _phoneNumber.text =
                             _contacts?[index].phones.first.number ?? "";

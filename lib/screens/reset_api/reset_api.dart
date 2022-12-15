@@ -21,6 +21,26 @@ class _ResetApiKeyState extends State<ResetApiKey> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: kWhite,
+        elevation: 0,
+        leading: IconButton(
+          onPressed: () {
+            Navigator.pop(context);
+          },
+          icon: Icon(
+            Icons.arrow_back_ios,
+            color: kBlack,
+            size: 20.sp,
+          ),
+        ),
+        title: CustomText(
+          size: 20.sp,
+          colour: kBlack,
+          text: "Reset API Key",
+          weight: kSemiBold,
+        ),
+      ),
       body: GestureDetector(
         onTap: kUnfocus,
         child: SingleChildScrollView(
@@ -31,30 +51,6 @@ class _ResetApiKeyState extends State<ResetApiKey> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  SizedBox(height: 27.h),
-                  SizedBox(
-                    height: 66.h,
-                    width: 390.w,
-                    child: Row(
-                      children: [
-                        IconButton(
-                          onPressed: () {
-                            Navigator.pop(context);
-                          },
-                          icon: Icon(Icons.arrow_back_ios,
-                              color: kBlack, size: 20.sp),
-                        ),
-                        SizedBox(width: 40.w),
-                        CustomText(
-                          size: 16.sp,
-                          colour: kBlack,
-                          text: "Reset API Key",
-                          weight: kSemiBold,
-                        ),
-                      ],
-                    ),
-                  ),
-                  SizedBox(height: 45.h),
                   CustomText(
                     size: 12.sp,
                     colour: kBlack,

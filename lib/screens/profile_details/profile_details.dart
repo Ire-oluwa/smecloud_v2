@@ -33,6 +33,26 @@ class _ProfileDetailsState extends State<ProfileDetails> {
   Widget build(BuildContext context) {
     final provider = context.read<ProfileDetailProvider>();
     return Scaffold(
+      appBar: AppBar(
+        elevation: 0,
+        leading: IconButton(
+          onPressed: () {
+            Navigator.pop(context);
+          },
+          icon: Icon(
+            Icons.arrow_back_ios,
+            color: kBlack,
+            size: 18.sp,
+          ),
+        ),
+        backgroundColor: kWhite,
+        title: CustomText(
+          size: 16.sp,
+          colour: kBlack,
+          text: "Profile Details",
+          weight: kSemiBold,
+        ),
+      ),
       body: SafeArea(
         child: GestureDetector(
           onTap: kUnfocus,
@@ -40,27 +60,9 @@ class _ProfileDetailsState extends State<ProfileDetails> {
             child: SizedBox(
               height: MediaQuery.of(context).size.height,
               child: Padding(
-                padding: EdgeInsets.symmetric(horizontal: 25.w, vertical: 27.h),
+                padding: EdgeInsets.symmetric(horizontal: 25.w, vertical: 17.h),
                 child: Column(
                   children: [
-                    Row(
-                      children: [
-                        IconButton(
-                          onPressed: () {
-                            Navigator.pop(context);
-                          },
-                          icon: Icon(Icons.arrow_back_ios, size: 20.sp),
-                        ),
-                        SizedBox(width: 40.w),
-                        CustomText(
-                          size: 16.sp,
-                          colour: kBlack,
-                          text: "Profile Details",
-                          weight: kSemiBold,
-                        ),
-                      ],
-                    ),
-                    SizedBox(height: 66.h),
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [

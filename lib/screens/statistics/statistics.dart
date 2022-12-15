@@ -28,17 +28,21 @@ class _StatisticsState extends State<Statistics> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        elevation: 0,
         leading: IconButton(
           onPressed: () {
             Navigator.pop(context);
           },
-          icon: const Icon(Icons.arrow_back_ios),
+          icon: Icon(
+            Icons.arrow_back_ios,
+            color: kBlack,
+            size: 18.sp,
+          ),
         ),
-        backgroundColor: kPurpleTheme,
-        centerTitle: true,
+        backgroundColor: kWhite,
         title: CustomText(
           size: 16.sp,
-          colour: kWhite,
+          colour: kBlack,
           text: "Statistics",
           weight: kSemiBold,
         ),

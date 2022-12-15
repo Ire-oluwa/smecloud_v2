@@ -22,8 +22,8 @@ class CustomText extends StatelessWidget {
       text,
       softWrap: true,
       textAlign: align,
-      maxLines: 3,
-      overflow: TextOverflow.ellipsis,
+      maxLines: 50,
+      overflow: TextOverflow.visible,
       style: GoogleFonts.getFont(
         "Nunito",
         textStyle: TextStyle(

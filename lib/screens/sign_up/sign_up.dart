@@ -7,6 +7,7 @@ import 'package:sme_cloud_version2/constants/app_constants.dart';
 import 'package:sme_cloud_version2/providers/sign_up_providers/sign_up_provider.dart';
 import 'package:sme_cloud_version2/screens/dashboard/dashboard.dart';
 import 'package:sme_cloud_version2/screens/sign_in/sign_in.dart';
+import 'package:sme_cloud_version2/screens/terms_and_conditions/terms_and_conditions.dart';
 import 'package:sme_cloud_version2/widgets/custom_checkbox/custom_checkbox.dart';
 import 'package:sme_cloud_version2/widgets/custom_elevated_button/custom_elevated_button.dart';
 import 'package:sme_cloud_version2/widgets/custom_text/custom_text.dart';
@@ -111,10 +112,16 @@ class _SignUpState extends State<SignUp> {
                                 ),
                               ),
                               WidgetSpan(
-                                child: CustomText(
-                                  size: 12.sp,
-                                  colour: kPurpleText,
-                                  text: "Terms and Conditions",
+                                child: GestureDetector(
+                                  onTap: () {
+                                    Navigator.pushNamed(
+                                        context, TermsAndConditions.id);
+                                  },
+                                  child: CustomText(
+                                    size: 12.sp,
+                                    colour: kPurpleText,
+                                    text: "Terms and Conditions",
+                                  ),
                                 ),
                               ),
                             ],

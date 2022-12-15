@@ -21,6 +21,7 @@ import 'package:sme_cloud_version2/screens/help_and_support/help_and_support.dar
 import 'package:sme_cloud_version2/screens/history/history.dart';
 import 'package:sme_cloud_version2/screens/home/home.dart';
 import 'package:sme_cloud_version2/screens/more/more.dart';
+import 'package:sme_cloud_version2/screens/notification/notification.dart';
 import 'package:sme_cloud_version2/screens/otp_screen/otp_screen.dart';
 import 'package:sme_cloud_version2/screens/profile_details/profile_details.dart';
 import 'package:sme_cloud_version2/screens/reset_api/reset_api.dart';
@@ -29,6 +30,7 @@ import 'package:sme_cloud_version2/screens/sign_up/sign_up.dart';
 import 'package:sme_cloud_version2/screens/splash/final_splash.dart';
 import 'package:sme_cloud_version2/screens/splash/initial_splash.dart';
 import 'package:sme_cloud_version2/screens/statistics/statistics.dart';
+import 'package:sme_cloud_version2/screens/terms_and_conditions/terms_and_conditions.dart';
 import 'package:sme_cloud_version2/screens/vend_data/vend_data.dart';
 
 void main() {
@@ -88,6 +90,8 @@ class MyApp extends StatelessWidget {
                 const ChangePasswordSetting(),
             ChangePin.id: (context) => const ChangePin(),
             FAQ.id: (context) => const FAQ(),
+            TermsAndConditions.id: (context) => const TermsAndConditions(),
+            Notifications.id: (context) => const Notifications(),
           },
         );
       },

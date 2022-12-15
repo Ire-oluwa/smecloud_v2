@@ -7,8 +7,10 @@ import 'package:sme_cloud_version2/constants/app_constants.dart';
 import 'package:sme_cloud_version2/screens/change_password_in_settings/change_password_in_settings.dart';
 import 'package:sme_cloud_version2/screens/change_pin/change_pin.dart';
 import 'package:sme_cloud_version2/screens/help_and_support/help_and_support.dart';
+import 'package:sme_cloud_version2/screens/notification/notification.dart';
 import 'package:sme_cloud_version2/screens/profile_details/profile_details.dart';
 import 'package:sme_cloud_version2/screens/reset_api/reset_api.dart';
+import 'package:sme_cloud_version2/screens/terms_and_conditions/terms_and_conditions.dart';
 import 'package:sme_cloud_version2/widgets/custom_text/custom_text.dart';
 
 class More extends StatefulWidget {
@@ -44,7 +46,9 @@ class _MoreState extends State<More> {
                     ),
                   ),
                   IconButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.pushNamed(context, Notifications.id);
+                    },
                     icon: FaIcon(
                       FontAwesomeIcons.bell,
                       size: 22.sp,
@@ -109,7 +113,9 @@ class _MoreState extends State<More> {
               buildTile(
                 title: "Terms & Conditions",
                 subtitle: "Contains our contract with you",
-                onClick: () {},
+                onClick: () {
+                  Navigator.pushNamed(context, TermsAndConditions.id);
+                },
               ),
               SizedBox(height: 14.h),
               buildTile(

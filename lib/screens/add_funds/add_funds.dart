@@ -27,17 +27,21 @@ class _AddFundsState extends State<AddFunds> {
     final pinProvider = context.read<AddFundsTransactionPinProvider>();
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: kWhite,
+        elevation: 0,
         leading: IconButton(
           onPressed: () {
             Navigator.pop(context);
           },
-          icon: const Icon(Icons.arrow_back_ios),
+          icon: Icon(
+            Icons.arrow_back_ios,
+            color: kBlack,
+            size: 18.sp,
+          ),
         ),
-        backgroundColor: kPurpleTheme,
-        centerTitle: true,
         title: CustomText(
-          size: 16.sp,
-          colour: kWhite,
+          size: 18.sp,
+          colour: kBlack,
           text: "Add Funds",
           weight: kSemiBold,
         ),

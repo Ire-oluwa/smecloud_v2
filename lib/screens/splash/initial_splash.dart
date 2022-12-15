@@ -45,6 +45,14 @@ class _InitialSplashState extends State<InitialSplash>
   }
 
   @override
+  void didChangeDependencies() {
+    getDeviceId();
+    (value) => deviceId = value!;
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {});
+    super.didChangeDependencies();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(

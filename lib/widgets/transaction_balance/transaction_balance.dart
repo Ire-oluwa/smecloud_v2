@@ -22,40 +22,42 @@ class TransactionBalance extends StatelessWidget {
       colour: const Color(0xFF0588E8),
       margin: EdgeInsets.symmetric(horizontal: 5.w),
       borderRadius: BorderRadius.circular(8.r),
-      padding: EdgeInsets.symmetric(vertical: 26.h, horizontal: 14.w),
+      padding: EdgeInsets.symmetric(vertical: 16.h, horizontal: 14.w),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Image.asset("assets/dashboard_svg_images/wallet.png"),
           SizedBox(width: 7.w),
-          Center(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                CustomText(
-                    size: 12.sp, colour: kWhite, text: "Transaction Balance"),
-                CustomText(
-                  size: 16.sp,
-                  colour: kWhite,
-                  text: isBalanceObscured ? "*** *** *** **" : "N 100,000",
-                  weight: kSemiBold,
-                ),
-                CustomText(
-                    size: 12.sp,
-                    colour: kWhite,
-                    text: "Acct number   2345678765"),
-              ],
-            ),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              CustomText(
+                  size: 12.sp, colour: kWhite, text: "Transaction Balance"),
+              CustomText(
+                size: 16.sp,
+                colour: kWhite,
+                text: isBalanceObscured ? "*** *** *** **" : "N 100,000",
+                weight: kSemiBold,
+              ),
+              CustomText(
+                size: 12.sp,
+                colour: kWhite,
+                text: "Acct number   2345678765",
+              ),
+            ],
           ),
           SizedBox(width: 50.w),
-          IconButton(
-            onPressed: onIconToggled,
-            icon: FaIcon(
-              isBalanceObscured
-                  ? FontAwesomeIcons.solidEyeSlash
-                  : FontAwesomeIcons.solidEye,
-              size: 16.sp,
-              color: kWhite,
+          Center(
+            child: IconButton(
+              onPressed: onIconToggled,
+              icon: FaIcon(
+                isBalanceObscured
+                    ? FontAwesomeIcons.solidEyeSlash
+                    : FontAwesomeIcons.solidEye,
+                size: 16.sp,
+                color: kWhite,
+              ),
             ),
           ),
         ],

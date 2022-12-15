@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_contacts/flutter_contacts.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:sme_cloud_version2/constants/app_constants.dart';
@@ -15,6 +16,12 @@ class VendData extends StatefulWidget {
 }
 
 class _VendDataState extends State<VendData> {
+  @override
+  void initState() {
+    getPhoneData();
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -52,31 +59,36 @@ class _VendDataState extends State<VendData> {
                     weight: kSemiBold,
                   ),
                   SizedBox(height: 5.h),
-                  Row(
-                    children: [
-                      SizedBox(
-                        height: 48.h,
-                        width: 240.w,
-                        child: CustomTextField(
-                          controller: _phoneNumber,
-                          keyboardType: kNumberInputType,
-                          formatter: kFormatPhoneNumber,
-                          inputAction: kInputActionNext,
-                          hint: "",
-                        ),
-                      ),
-                      SizedBox(width: 9.w),
-                      SizedBox(
-                        height: 48.h,
-                        width: 52.w,
-                        child: InkWell(
-                          onTap: () {},
-                          child: SvgPicture.asset(
-                            "assets/dashboard_svg_images/vend_data_contact.svg",
+                  SizedBox(
+                    // height: 48.h,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        SizedBox(
+                          width: 240.w,
+                          child: CustomTextField(
+                            controller: _phoneNumber,
+                            keyboardType: kNumberInputType,
+                            formatter: kFormatPhoneNumber,
+                            inputAction: kInputActionNext,
+                            hint: "",
                           ),
                         ),
-                      ),
-                    ],
+                        // SizedBox(width: 9.w),
+                        Expanded(
+                          child: InkWell(
+                            onTap: () {
+                              setState(() {});
+                              print(_contacts?.last.phones.elementAt(0).number);
+                            },
+                            child: SvgPicture.asset(
+                              "assets/dashboard_svg_images/vend_data_contact.svg",
+                              fit: BoxFit.scaleDown,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                   SizedBox(height: 20.h),
                   Row(
@@ -273,6 +285,14 @@ class _VendDataState extends State<VendData> {
         ),
       ),
     );
+  }
+
+  List<Contact>? _contacts;
+  void getPhoneData() async {
+    if (await FlutterContacts.requestPermission()) {
+      _contacts = await FlutterContacts.getContacts(withProperties: true);
+      setState(() {});
+    }
   }
 
   //time and date must be obtained from backend.

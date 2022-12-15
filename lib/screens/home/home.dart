@@ -7,6 +7,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sme_cloud_version2/constants/app_constants.dart';
 import 'package:sme_cloud_version2/screens/add_funds/add_funds.dart';
 import 'package:sme_cloud_version2/screens/history/history.dart';
+import 'package:sme_cloud_version2/screens/notification/notification.dart';
 import 'package:sme_cloud_version2/screens/reset_api/reset_api.dart';
 import 'package:sme_cloud_version2/screens/vend_data/vend_data.dart';
 import 'package:sme_cloud_version2/widgets/custom_container/custom_container.dart';
@@ -98,7 +99,7 @@ class _HomeState extends State<Home> {
                                     CustomText(
                                       size: 16.26.sp,
                                       colour: kDeeperBlack,
-                                      text: snapshot.data ?? "",
+                                      text: snapshot.data ?? "Bruce Wayne",
                                       weight: kBold,
                                     ),
                                     CustomText(
@@ -120,7 +121,9 @@ class _HomeState extends State<Home> {
                           }),
                       SizedBox(width: 120.w),
                       IconButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            Navigator.pushNamed(context, Notifications.id);
+                          },
                           icon: FaIcon(FontAwesomeIcons.bell, size: 16.sp)),
                     ],
                   ),

@@ -1,3 +1,5 @@
+import 'dart:typed_data';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_contacts/flutter_contacts.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -78,8 +80,8 @@ class _VendDataState extends State<VendData> {
                         Expanded(
                           child: InkWell(
                             onTap: () {
-                              setState(() {});
-                              print(_contacts?.last.phones.elementAt(0).number);
+                              displayContacts();
+                              // print(_contacts?.first.phones.elementAt(0).number);
                             },
                             child: SvgPicture.asset(
                               "assets/dashboard_svg_images/vend_data_contact.svg",
@@ -288,9 +290,68 @@ class _VendDataState extends State<VendData> {
   }
 
   List<Contact>? _contacts;
+
+  displayContacts() {
+    showModalBottomSheet(
+      context: context,
+      builder: (context) {
+        return (_contacts?.length == null)
+            ? SizedBox(
+                height: 200.h,
+                child: Center(
+                  child: CircularProgressIndicator(
+                    color: kPurpleTheme,
+                    strokeWidth: 2.w,
+                  ),
+                ),
+              )
+            : ListView.builder(
+                itemCount: _contacts?.length,
+                itemBuilder: (context, index) {
+                  Uint8List? image = _contacts?[index].photo;
+                  return ListTile(
+                    leading: (_contacts![index].photo == null)
+                        ? const Icon(Icons.person)
+                        : CircleAvatar(
+                            backgroundColor: kPurpleTheme,
+                            backgroundImage: MemoryImage(image!),
+                          ),
+                    title: CustomText(
+                      size: 14.sp,
+                      colour: kBlack,
+                      text:
+                          ("${_contacts?[index].name.first} ${_contacts?[index].name.last}") ??
+                              "Anonymous",
+                      weight: kSemiBold,
+                    ),
+                    subtitle: CustomText(
+                      size: 12.sp,
+                      colour: kBlack,
+                      text: (_contacts![index].phones.isNotEmpty)
+                          ? (_contacts![index].phones.first.number)
+                          : "---- --- ----",
+                      weight: kNormal,
+                    ),
+                    onTap: () {
+                      print(_contacts?.length);
+                      setState(() {
+                        _phoneNumber.text =
+                            _contacts?[index].phones.first.number ?? "";
+                      });
+                    },
+                  );
+                },
+              );
+      },
+    );
+  }
+
   void getPhoneData() async {
     if (await FlutterContacts.requestPermission()) {
-      _contacts = await FlutterContacts.getContacts(withProperties: true);
+      _contacts = await FlutterContacts.getContacts(
+        withProperties: true,
+        withPhoto: true,
+      );
       setState(() {});
     }
   }

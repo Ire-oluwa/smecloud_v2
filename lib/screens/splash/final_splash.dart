@@ -102,7 +102,13 @@ class _FinalSplashState extends State<FinalSplash> {
                   child: CustomElevatedButton(
                     backgroundColour: kPurpleTheme,
                     onClick: () {
-                      Navigator.of(context).pushNamed(SignUp.id);
+                      Navigator.pushNamedAndRemoveUntil(
+                        context,
+                        SignUp.id,
+                        (route) {
+                          return false;
+                        },
+                      );
                     },
                     circularBorderRadius: 10.r,
                     child: CustomText(
@@ -165,7 +171,13 @@ Widget buildTextAndLink({context}) {
         WidgetSpan(
           child: GestureDetector(
             onTap: () {
-              Navigator.of(context).pushNamed(SignUp.id);
+              Navigator.pushNamedAndRemoveUntil(
+                context,
+                SignUp.id,
+                (route) {
+                  return false;
+                },
+              );
             },
             child: CustomText(
               size: 14.sp,

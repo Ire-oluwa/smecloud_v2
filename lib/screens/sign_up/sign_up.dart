@@ -141,7 +141,8 @@ class _SignUpState extends State<SignUp> {
                           await storeUsername();
                           await storeUserPassword();
                           if (!mounted) return;
-                          Navigator.of(context).pushNamed(Dashboard.id);
+                          Navigator.pushReplacementNamed(context, Dashboard.id);
+                          await keepUserLoggedIn();
                         },
                         circularBorderRadius: 15.r,
                         backgroundColour: kSubmissionButtonColour,
@@ -163,6 +164,11 @@ class _SignUpState extends State<SignUp> {
         ),
       ),
     );
+  }
+
+  keepUserLoggedIn() async {
+    final loggedInPreference = await SharedPreferences.getInstance();
+    loggedInPreference.setBool("isLoggedIn", true);
   }
 
   storeUserFullName() async {
@@ -193,8 +199,7 @@ class _SignUpState extends State<SignUp> {
   }
 
   storeUsername() async {
-    SharedPreferences userNamePreferences =
-        await SharedPreferences.getInstance();
+    final userNamePreferences = await SharedPreferences.getInstance();
     if (!mounted) return;
     userNamePreferences.setString(
       "username",

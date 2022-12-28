@@ -30,7 +30,7 @@ class _HomeState extends State<Home> {
   late bool isWalletBalanceHidden = true;
   late bool isTransactionBalanceHidden = true;
   late bool isPortalBalanceHidden = true;
-  late String _name = "";
+  late String? name = "";
 
   void onWalletBalanceToggled() {
     setState(() {
@@ -48,6 +48,12 @@ class _HomeState extends State<Home> {
     setState(() {
       isPortalBalanceHidden = !isPortalBalanceHidden;
     });
+  }
+
+  @override
+  void initState() {
+    getUsername();
+    super.initState();
   }
 
   @override
@@ -86,10 +92,10 @@ class _HomeState extends State<Home> {
                         ),
                       ),
                       SizedBox(width: 10.w),
-                      //TODO: username
-                      FutureBuilder<String>(
+                      FutureBuilder<String?>(
+                          initialData: "",
                           future: getUsername(),
-                          builder: (context, AsyncSnapshot<String> snapshot) {
+                          builder: (context, AsyncSnapshot<String?> snapshot) {
                             if (snapshot.hasData) {
                               return SizedBox(
                                 width: 100.w,
@@ -99,7 +105,7 @@ class _HomeState extends State<Home> {
                                     CustomText(
                                       size: 16.26.sp,
                                       colour: kDeeperBlack,
-                                      text: snapshot.data ?? "Bruce Wayne",
+                                      text: snapshot.data ?? "",
                                       weight: kBold,
                                     ),
                                     CustomText(
@@ -112,11 +118,14 @@ class _HomeState extends State<Home> {
                                 ),
                               );
                             }
-                            return CustomText(
-                              size: 16.26.sp,
-                              colour: kDeeperBlack,
-                              text: "Mr. John Doe",
-                              weight: kBold,
+                            return SizedBox(
+                              width: 100.w,
+                              child: CustomText(
+                                size: 16.26.sp,
+                                colour: kDeeperBlack,
+                                text: "",
+                                weight: kBold,
+                              ),
                             );
                           }),
                       SizedBox(width: 120.w),
@@ -276,13 +285,13 @@ class _HomeState extends State<Home> {
     );
   }
 
-  Future<String> getUsername() async {
+  Future<String?> getUsername() async {
     final prefs = await SharedPreferences.getInstance();
-    _name = prefs.getString("username") ?? "";
-    return _name;
+    name = prefs.getString("username") ?? "";
+    return name;
   }
 
-  getMoment() {
+  String getMoment() {
     if (DateTime.now().hour < 12) {
       return "Good Morning";
     } else if (DateTime.now().hour == 12) {
@@ -292,6 +301,7 @@ class _HomeState extends State<Home> {
     } else if (DateTime.now().hour > 16) {
       return "Good Evening";
     }
+    return "Halo";
   }
 
   Widget _buildQuickOptions({

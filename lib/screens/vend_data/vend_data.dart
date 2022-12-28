@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_contacts/flutter_contacts.dart';
@@ -292,44 +291,48 @@ class _VendDataState extends State<VendData> {
   List<Contact>? _contacts;
 
   displayContacts() {
-    showModalBottomSheet(
-      shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.vertical(top: Radius.circular(10.r))),
-      context: context,
-      builder: (context) {
-        return (_contacts?.length == null)
-            ? SizedBox(
-                height: 200.h,
-                child: Center(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      CircularProgressIndicator(
-                        color: kPurpleTheme,
-                        strokeWidth: 2.w,
-                      ),
-                      SizedBox(height: 3.h),
-                      CustomText(
-                        size: 13.sp,
-                        colour: kBlack,
-                        text: "Please try again, or manually input the number",
-                      ),
-                    ],
-                  ),
+    setState(() {
+      getPhoneData();
+    });
+    (_contacts) == null
+        ? showModalBottomSheet(
+            context: context,
+            builder: (context) {
+              return Center(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    CircularProgressIndicator(
+                      color: kPurpleTheme,
+                      strokeWidth: 2.w,
+                    ),
+                    SizedBox(height: 3.h),
+                    CustomText(
+                      size: 13.sp,
+                      colour: kBlack,
+                      text: "Please try again, or manually input the number",
+                    ),
+                  ],
                 ),
-              )
-            : ListView.builder(
+              );
+            },
+          )
+        : showModalBottomSheet(
+            shape: RoundedRectangleBorder(
+                borderRadius:
+                    BorderRadius.vertical(top: Radius.circular(10.r))),
+            context: context,
+            builder: (context) {
+              return ListView.builder(
                 itemCount: _contacts?.length,
                 itemBuilder: (context, index) {
-                  Uint8List? image = _contacts?[index].photo;
                   return ListTile(
                     leading: const Icon(Icons.person),
                     title: CustomText(
                       size: 14.sp,
                       colour: kBlack,
                       text:
-                          ("${_contacts?[index].name.first} ${_contacts?[index].name.last}") ??
-                              "Anonymous",
+                          ("${_contacts?[index].name.first} ${_contacts?[index].name.last}"),
                       weight: kSemiBold,
                     ),
                     subtitle: CustomText(
@@ -349,17 +352,19 @@ class _VendDataState extends State<VendData> {
                   );
                 },
               );
-      },
-    );
+            },
+          );
   }
 
   void getPhoneData() async {
     if (await FlutterContacts.requestPermission()) {
-      _contacts = await FlutterContacts.getContacts(
+      final contacts = await FlutterContacts.getContacts(
         withProperties: true,
         withPhoto: true,
       );
-      setState(() {});
+      setState(() {
+        _contacts = contacts;
+      });
     }
   }
 

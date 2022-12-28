@@ -10,6 +10,7 @@ import 'package:sme_cloud_version2/screens/help_and_support/help_and_support.dar
 import 'package:sme_cloud_version2/screens/notification/notification.dart';
 import 'package:sme_cloud_version2/screens/profile_details/profile_details.dart';
 import 'package:sme_cloud_version2/screens/reset_api/reset_api.dart';
+import 'package:sme_cloud_version2/screens/sign_up/sign_up.dart';
 import 'package:sme_cloud_version2/screens/terms_and_conditions/terms_and_conditions.dart';
 import 'package:sme_cloud_version2/widgets/custom_text/custom_text.dart';
 
@@ -129,7 +130,12 @@ class _MoreState extends State<More> {
               buildTile(
                 title: "Sign Out",
                 subtitle: "Remove your current credentials from the app",
-                onClick: () {},
+                onClick: () async {
+                  await logUserOut();
+                  if (!mounted) return;
+                  Navigator.pushNamedAndRemoveUntil(
+                      context, SignUp.id, (route) => false);
+                },
               ),
               SizedBox(height: 22.h),
               Row(
@@ -170,6 +176,11 @@ class _MoreState extends State<More> {
     );
   }
 
+  logUserOut() async {
+    final logOutPreference = await SharedPreferences.getInstance();
+    logOutPreference.setBool("isLoggedIn", false);
+  }
+
   Future<String> getFullName() async {
     final namePreference = await SharedPreferences.getInstance();
     name = namePreference.getString("fullName") ?? "";
@@ -197,7 +208,7 @@ class _MoreState extends State<More> {
         return CustomText(
           size: 18.sp,
           colour: kDeeperBlack,
-          text: "Mr. John Doe",
+          text: "Wayne",
           weight: kBold,
         );
       },

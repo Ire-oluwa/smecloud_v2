@@ -33,7 +33,7 @@ import 'package:sme_cloud_version2/screens/statistics/statistics.dart';
 import 'package:sme_cloud_version2/screens/terms_and_conditions/terms_and_conditions.dart';
 import 'package:sme_cloud_version2/screens/vend_data/vend_data.dart';
 
-void main() {
+void main() async {
   runApp(
     MultiProvider(
       providers: [

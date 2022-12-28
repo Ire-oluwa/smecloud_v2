@@ -4,7 +4,7 @@ import 'package:sme_cloud_version2/screens/history/history.dart';
 import 'package:sme_cloud_version2/screens/home/home.dart';
 import 'package:sme_cloud_version2/screens/more/more.dart';
 import 'package:sme_cloud_version2/screens/statistics/statistics.dart';
-import 'package:sme_cloud_version2/screens/utilities/NavBarItems/NavBarItems.dart';
+import 'package:sme_cloud_version2/screens/utilities/nav_bar_items/nav_bar_items.dart';
 
 class Dashboard extends StatefulWidget {
   const Dashboard({Key? key}) : super(key: key);
@@ -23,7 +23,6 @@ class _DashboardState extends State<Dashboard> {
   ];
 
   late int _currentIndex = 0;
-  final _bgColour = kPurpleTheme;
 
   @override
   Widget build(BuildContext context) {

@@ -4,6 +4,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:sme_cloud_version2/constants/app_constants.dart';
 import 'package:sme_cloud_version2/widgets/custom_container/custom_container.dart';
 import 'package:sme_cloud_version2/widgets/custom_text/custom_text.dart';
+import 'package:sme_cloud_version2/widgets/selectable_text/selectable_text.dart';
 
 class WalletBalance extends StatelessWidget {
   const WalletBalance({
@@ -39,14 +40,13 @@ class WalletBalance extends StatelessWidget {
                 text: isBalanceObscured ? "*** *** *** **" : "N 100,000",
                 weight: kSemiBold,
               ),
-              CustomText(
-                size: 12.sp,
-                colour: kWhite,
-                text: "Acct number   2345678765",
+              CustomSelectableText(
+                text: "Acct number:\t\t2345678765",
+                textSize: 12.sp,
               ),
             ],
           ),
-          SizedBox(width: 50.w),
+          SizedBox(width: 40.w),
           Center(
             child: IconButton(
               onPressed: onIconToggled,

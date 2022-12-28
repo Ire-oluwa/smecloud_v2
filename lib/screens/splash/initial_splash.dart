@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:platform_device_id/platform_device_id.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:sme_cloud_version2/screens/dashboard/dashboard.dart';
 import 'package:sme_cloud_version2/screens/splash/final_splash.dart';
 
 class InitialSplash extends StatefulWidget {
@@ -13,11 +15,21 @@ class InitialSplash extends StatefulWidget {
 
 class _InitialSplashState extends State<InitialSplash>
     with SingleTickerProviderStateMixin {
+  late bool isLoggedIn;
   late AnimationController _animationController;
   late Animation<double> _sizeAnimation;
 
+  Future<bool?> checkLogInStatus() async {
+    WidgetsFlutterBinding.ensureInitialized();
+    final prefs = await SharedPreferences.getInstance();
+    isLoggedIn = prefs.getBool("isLoggedIn") ?? false;
+    return isLoggedIn;
+  }
+
   @override
   void initState() {
+    WidgetsFlutterBinding.ensureInitialized();
+    checkLogInStatus();
     _animationController =
         AnimationController(vsync: this, duration: const Duration(seconds: 2));
 
@@ -30,8 +42,9 @@ class _InitialSplashState extends State<InitialSplash>
       ..addStatusListener(
         (status) {
           if (status == AnimationStatus.completed) {
-            //TODO: if loggedIn, go to home screen, else, go to signup
-            Navigator.of(context).pushReplacementNamed(FinalSplash.id);
+            isLoggedIn
+                ? Navigator.of(context).pushReplacementNamed(Dashboard.id)
+                : Navigator.of(context).pushReplacementNamed(FinalSplash.id);
           }
         },
       );
@@ -48,7 +61,6 @@ class _InitialSplashState extends State<InitialSplash>
   void didChangeDependencies() {
     getDeviceId();
     (value) => deviceId = value!;
-    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {});
     super.didChangeDependencies();
   }
 

@@ -1,3 +1,4 @@
+import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -92,7 +93,49 @@ class _StatisticsState extends State<Statistics> {
                 text: "Chart",
                 weight: kSemiBold,
               ),
-              SizedBox(height: 284.h, width: 355.w),
+              SizedBox(height: 12.h),
+              //Line hart
+              AspectRatio(
+                aspectRatio: 355 / 284,
+                child: LineChart(
+                  swapAnimationDuration: const Duration(milliseconds: 2000),
+                  LineChartData(
+                    titlesData: FlTitlesData(
+                      show: true,
+                      rightTitles: AxisTitles(
+                        sideTitles: SideTitles(showTitles: false),
+                      ),
+                      topTitles: AxisTitles(
+                        sideTitles: SideTitles(showTitles: false),
+                      ),
+                      bottomTitles: AxisTitles(
+                        sideTitles: SideTitles(
+                          showTitles: true,
+                        ),
+                      ),
+                    ),
+                    gridData: FlGridData(show: false),
+                    borderData: FlBorderData(border: Border.all(color: kBlack)),
+                    lineBarsData: [
+                      LineChartBarData(
+                        color: kPurpleTheme,
+                        belowBarData: BarAreaData(
+                          show: true,
+                          gradient: LinearGradient(
+                            begin: Alignment.topRight,
+                            end: Alignment.bottomLeft,
+                            colors: _colours.map((e) => e).toList(),
+                          ),
+                        ),
+                        isCurved: true,
+                        dotData: FlDotData(show: false),
+                        spots: points.map((e) => FlSpot(e.x, e.y)).toList(),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+              SizedBox(height: 11.h),
               CustomContainer(
                 height: 104.h,
                 width: 168.w,
@@ -148,6 +191,20 @@ class _StatisticsState extends State<Statistics> {
       ),
     );
   }
+
+  List<Point> points = [
+    Point(0.5, 4),
+    Point(1.5, 7),
+    Point(2.5, 9),
+    Point(3.5, 14),
+  ];
+
+  final List<Color> _colours = [
+    const Color(0xFFBB3EE8).withOpacity(0.51),
+    const Color(0xFFBB3EE8).withOpacity(0.36),
+    const Color(0xFFBB3EE8).withOpacity(0.14),
+    const Color(0xFFBB3EE8).withOpacity(0.12),
+  ];
 
   clickAll() {
     setState(() {
@@ -260,4 +317,10 @@ class _StatisticsState extends State<Statistics> {
       ),
     );
   }
+}
+
+class Point {
+  Point(this.x, this.y);
+  final double x;
+  final double y;
 }

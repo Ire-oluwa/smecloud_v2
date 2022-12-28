@@ -116,7 +116,7 @@ class _ChangePinState extends State<ChangePin> {
                             child: CustomText(
                               size: 14.sp,
                               colour: kWhite,
-                              text: "Change Password",
+                              text: "Change Pin",
                               weight: kBold,
                             ),
                           ),
